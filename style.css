@@ -5,7 +5,7 @@
 }
 
 body{
-    background-color: rgba(5, 0, 9, 1);
+    background-color: black;
     z-index: -2;
 }
 .elipse1{
@@ -130,4 +130,8 @@ input{
  
     border-radius: 12px;
     box-shadow: 0px 0px 10px rgb(225, 255, 0);
+}
+.empty{
+    height: 100px;
+    width: 100%;
 }

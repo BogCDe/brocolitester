@@ -129,10 +129,11 @@
          <img id="onex" src="./assets/bonused/OneX.png" alt="" class="one el1">
     </div>
     <img id="bonus" src="./assets/bonus.png" alt="" class="bonused">
-    <div id="bnh" class="bh">Промо скопированн!</div>
+    <div id="bnh" class="bh">Промо скопирован!</div>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
         import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
+    
         const firebaseConfig = {
             apiKey: "AIzaSyA6SW7DyUQBU501-QPkmhHYX2hsIkoKrsA",
             authDomain: "prominiappsbase.firebaseapp.com",
@@ -143,239 +144,91 @@
             appId: "1:871832994147:web:f059db28198fbf665c5356",
             measurementId: "G-F3GZF1CNJH"
         };
-        let fonBetData;
-
+    
         const app = initializeApp(firebaseConfig);
         const database = getDatabase(app);
-        const dbRef = ref(database, 'fonbet'); 
-        let fonBeT = document.getElementById("q");
-        onValue(dbRef, (snapshot) => {
-            const data = snapshot.val();
-            console.log(data); 
-            fonBetData = data;
-            document.getElementById("fonbet").addEventListener("click", ()=> window.location.replace(fonBetData));
-            fonBeT.addEventListener("click", ()=> window.location.replace(fonBetData));
-        }, (error) => {
-            console.error("ERROR: ", error);
-            document.getElementById('output').innerText = "Ошибка при загрузке данных.";
+    
+        const items = [
+            { id: "bb", dbRef: "betboom" },
+            { id: "liga", dbRef: "liga" },
+            { id: "marat", dbRef: "marathon" },
+            { id: "leon", dbRef: "leon" },
+            { id: "win", dbRef: "1win" },
+            { id: "pinco", dbRef: "pinco" },
+            { id: "most", dbRef: "mostbet" },
+            { id: "onex", dbRef: "oneX" },
+            { id: "o", dbRef: "olimp" },
+            { id: "le", dbRef: "leon" },
+            { id: "m", dbRef: "marathon" },
+            { id: "l", dbRef: "liga" },
+            { id: "b", dbRef: "betboom" },
+            { id: "p", dbRef: "pari" },
+            { id: "q", dbRef: "fonbet"}
+        ];
+    
+        items.forEach(item => {
+            let element = document.getElementById(item.id);
+            const dbRef = ref(database, item.dbRef);
+            onValue(dbRef, (snapshot) => {
+                const data = snapshot.val();
+                console.log(data);
+                element.addEventListener("click", () => window.location.replace(data));
+            }, (error) => {
+                console.error("ERROR: ", error);
+                document.getElementById('output').innerText = "Ошибка при загрузке данных.";
+            });
         });
-
-        const app1 = initializeApp(firebaseConfig);
-        const database1 = getDatabase(app);
-        const dbRef1 = ref(database, 'pari'); 
-        let fonBeT1 = document.getElementById("p");
-        onValue(dbRef, (snapshot) => {
-            const data = snapshot.val();
-            console.log(data); 
-            fonBetData = data;
-            document.getElementById("pari").addEventListener("click", ()=> window.location.replace(fonBetData));
-            fonBeT1.addEventListener("click", ()=> window.location.replace(fonBetData));
-        }, (error) => {
-            console.error("ERROR: ", error);
-            document.getElementById('output').innerText = "Ошибка при загрузке данных.";
-        });
-
-        const app2 = initializeApp(firebaseConfig);
-        const database2 = getDatabase(app);
-        const dbRef2 = ref(database, 'olimp'); 
-        let fonBeT2 = document.getElementById("o");
-        onValue(dbRef, (snapshot) => {
-            const data = snapshot.val();
-            console.log(data); 
-            fonBetData = data;
-            fonBeT2.addEventListener("click", ()=> window.location.replace(fonBetData));
-        }, (error) => {
-            console.error("ERROR: ", error);
-            document.getElementById('output').innerText = "Ошибка при загрузке данных.";
-        });
-
-        const app3 = initializeApp(firebaseConfig);
-        const database3 = getDatabase(app);
-        const dbRef3 = ref(database, 'betboom'); 
-        let fonBeT3 = document.getElementById("b");
-        onValue(dbRef, (snapshot) => {
-            const data = snapshot.val();
-            console.log(data); 
-            fonBetData = data;
-            document.getElementById("bb").addEventListener("click", ()=> window.location.replace(fonBetData));
-            fonBeT3.addEventListener("click", ()=> window.location.replace(fonBetData));
-        }, (error) => {
-            console.error("ERROR: ", error);
-            document.getElementById('output').innerText = "Ошибка при загрузке данных.";
-        });
-
-        const app4 = initializeApp(firebaseConfig);
-        const database4 = getDatabase(app);
-        const dbRef4 = ref(database, 'liga'); 
-        let fonBeT4 = document.getElementById("l");
-        onValue(dbRef, (snapshot) => {
-            const data = snapshot.val();
-            console.log(data); 
-            fonBetData = data;
-            document.getElementById("liga").addEventListener("click", ()=> window.location.replace(fonBetData));
-            fonBeT4.addEventListener("click", ()=> window.location.replace(fonBetData));
-        }, (error) => {
-            console.error("ERROR: ", error);
-            document.getElementById('output').innerText = "Ошибка при загрузке данных.";
-        });
-
-        const app5 = initializeApp(firebaseConfig);
-        const database5 = getDatabase(app);
-        const dbRef5 = ref(database, 'marathon'); 
-        let fonBeT5 = document.getElementById("m");
-        onValue(dbRef, (snapshot) => {
-            const data = snapshot.val();
-            console.log(data); 
-            fonBetData = data;
-            document.getElementById("marat").addEventListener("click", ()=> window.location.replace(fonBetData));
-            fonBeT5.addEventListener("click", ()=> window.location.replace(fonBetData));
-        }, (error) => {
-            console.error("ERROR: ", error);
-            document.getElementById('output').innerText = "Ошибка при загрузке данных.";
-        });
-
-        
-        const app6 = initializeApp(firebaseConfig);
-        const database6 = getDatabase(app);
-        const dbRef6 = ref(database, 'leon'); 
-        let fonBeT6 = document.getElementById("le");
-        onValue(dbRef, (snapshot) => {
-            const data = snapshot.val();
-            console.log(data); 
-            fonBetData = data;
-            document.getElementById("leon").addEventListener("click", ()=> window.location.replace(fonBetData));
-            fonBeT6.addEventListener("click", ()=> window.location.replace(fonBetData));
-        }, (error) => {
-            console.error("ERROR: ", error);
-            document.getElementById('output').innerText = "Ошибка при загрузке данных.";
-        });
-
-        const app7 = initializeApp(firebaseConfig);
-        const database7 = getDatabase(app);
-        const dbRef7 = ref(database, '1win'); 
-        let fonBeT7 = document.getElementById("win");
-        onValue(dbRef, (snapshot) => {
-            const data = snapshot.val();
-            console.log(data); 
-            fonBetData = data;
-            fonBeT7.addEventListener("click", ()=> window.location.replace(fonBetData));
-        }, (error) => {
-            console.error("ERROR: ", error);
-            document.getElementById('output').innerText = "Ошибка при загрузке данных.";
-        });
-
-        const app8 = initializeApp(firebaseConfig);
-        const database8 = getDatabase(app);
-        const dbRef8 = ref(database, 'pinco'); 
-        let fonBeT8 = document.getElementById("pinco");
-        onValue(dbRef, (snapshot) => {
-            const data = snapshot.val();
-            console.log(data); 
-            fonBetData = data;
-            fonBeT8.addEventListener("click", ()=> window.location.replace(fonBetData));
-        }, (error) => {
-            console.error("ERROR: ", error);
-            document.getElementById('output').innerText = "Ошибка при загрузке данных.";
-        });
-
-        const app9 = initializeApp(firebaseConfig);
-        const database9 = getDatabase(app);
-        const dbRef9 = ref(database, 'mostbet'); 
-        let fonBeT9 = document.getElementById("most");
-        onValue(dbRef, (snapshot) => {
-            const data = snapshot.val();
-            console.log(data); 
-            fonBetData = data;
-            fonBeT8.addEventListener("click", ()=> window.location.replace(fonBetData));
-        }, (error) => {
-            console.error("ERROR: ", error);
-            document.getElementById('output').innerText = "Ошибка при загрузке данных.";
-        });
-
-        const app10 = initializeApp(firebaseConfig);
-        const database10 = getDatabase(app);
-        const dbRef10 = ref(database, 'mostbet'); 
-        let fonBeT10 = document.getElementById("most");
-        onValue(dbRef, (snapshot) => {
-            const data = snapshot.val();
-            console.log(data); 
-            fonBetData = data;
-            fonBeT8.addEventListener("click", ()=> window.location.replace(fonBetData));
-        }, (error) => {
-            console.error("ERROR: ", error);
-            document.getElementById('output').innerText = "Ошибка при загрузке данных.";
-        });
-
-        const app11 = initializeApp(firebaseConfig);
-        const database11 = getDatabase(app);
-        const dbRef11 = ref(database, 'oneX'); 
-        let fonBeT11 = document.getElementById("onex");
-        onValue(dbRef, (snapshot) => {
-            const data = snapshot.val();
-            console.log(data); 
-            fonBetData = data;
-            fonBeT8.addEventListener("click", ()=> window.location.replace(fonBetData));
-        }, (error) => {
-            console.error("ERROR: ", error);
-            document.getElementById('output').innerText = "Ошибка при загрузке данных.";
-        });
-
+    
         let item1 = document.getElementById("fonbet");
         let item2 = document.getElementById("pari");
-        let item3 = document.getElementById("bb");
-        let item4 = document.getElementById("liga");
-        let item5 = document.getElementById("marat");
-        let item6 = document.getElementById("leon");
         let bonused = document.getElementById("bonus");
         let bnht = document.getElementById("bnh");
-
+    
         bnht.style.display = "none";
-
+    
         const finderT = document.getElementById("f");
         const inputer = document.getElementById("inter");
         const all = document.getElementById("all");
         const alls = document.getElementById("alls");
+    
         inputer.addEventListener("input", toSearchMode);
-        bonused.addEventListener("click", async ()=>{
+        bonused.addEventListener("click", async () => {
             await navigator.clipboard.writeText("RICHBET");
             bonused.style.boxShadow = "0px 0px 20px rgb(0, 255, 26)";
             bnht.style.display = "block";
         });
-        
-        let Items_arr = 
-        [["FONBET", item1],
-         ["PARI", item2],
-          ["BET BOOM", item3],
-           ["LIGA STAVOK", item4],
-        ["MARATHON BET", item5],
-        ["LEON", item6]];
-
-        all.addEventListener("click", ()=>{
+    
+        let Items_arr = [
+            ["FONBET", item1],
+            ["PARI", item2],
+            ["BET BOOM", document.getElementById("bb")],
+            ["LIGA STAVOK", document.getElementById("liga")],
+            ["MARATHON BET", document.getElementById("marat")],
+            ["LEON", document.getElementById("leon")]
+        ];
+    
+        all.addEventListener("click", () => {
             inputer.value = "";
             toSearchMode();
         });
-        alls.addEventListener("click", ()=>{
+        alls.addEventListener("click", () => {
             inputer.value = "ALL";
             toSearchMode();
         });
-
+    
         StartLoadScene();
-
-        function StartLoadScene()
-        {
+    
+        function StartLoadScene() {
             inputer.style.width = "90%";
             all.style.display = "none";
             alls.style.display = "none";
             finderT.style.display = "none";
         }
-
-
-        function toSearchMode()
-        {
-            if (inputer.value.length <= 0){
+    
+        function toSearchMode() {
+            if (inputer.value.length <= 0) {
                 StartLoadScene();
-            }
-            else{
+            } else {
                 inputer.style.width = "45%";
                 finderT.style.display = "block";
                 all.style.display = "block";
@@ -383,20 +236,16 @@
             }
             RecalculateSercher(inputer.value);
         }
-
-        function RecalculateSercher(serch_text)
-        {
-            let controller = false;
-            for(let i = 0; i < Items_arr.length; i += 1){
-                if(Items_arr[i][0].startsWith(serch_text) || serch_text == "ALL"){
-                    Items_arr[i][1].style.display = "block";
+    
+        function RecalculateSercher(search_text) {
+            for (let i = 0; i < Items_arr.length; i += 1) {
+                if (Items_arr[i][0].startsWith(search_text) || search_text === "ALL") {
                     Items_arr[i][1].style.display = "flex";
-                }
-                else{
-                    Items_arr[i][1].style.display = "none"
+                } else {
+                    Items_arr[i][1].style.display = "none";
                 }
             }
         }
-    </script>
+    </script>    
 </body>
 </html>

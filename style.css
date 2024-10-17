@@ -3,9 +3,11 @@
     padding: 0;
     box-sizing: border-box;
 }
+html{
+    background-color: black;
+}
 
 body{
-    background-color: black;
     z-index: -2;
 }
 .elipse1{
@@ -30,7 +32,7 @@ body{
     overflow-x: scroll;
     overflow: scroll;
     margin-top: 15px;
-    background-color: rgba(255, 255, 255, 0);
+    background-color: rgba(0, 0, 0, 0);
     width: 100%;
     height: 220px;
     scrollbar-width: hide;

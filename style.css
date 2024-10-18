@@ -5,11 +5,9 @@
     background-color: black;
 
 }
-html{
-    background-color: black;
-}
 
 body{
+    background-color: black;
     z-index: -2;
 }
 .elipse1{
